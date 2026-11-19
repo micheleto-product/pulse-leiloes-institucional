@@ -71,6 +71,7 @@
   --gradient-hero: linear-gradient(180deg, oklch(0.18 0 0 / 0.55) 0%, oklch(0.18 0 0 / 0.85) 70%, var(--graphite) 100%);
   --gradient-gold: linear-gradient(135deg, var(--primary), var(--primary-hover));
   --shadow-gold: 0 12px 40px -12px color-mix(in oklab, var(--primary) 45%, transparent);
+  --gradient-editorial: linear-gradient(90deg, oklch(0.18 0 0 / 0.92), oklch(0.18 0 0 / 0.60));
 }
 
 @layer base {
@@ -82,7 +83,7 @@
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
   }
-  h1, h2, h3 { font-family: var(--font-serif); letter-spacing: -0.01em; }
+  h1, h2, h3 { font-family: var(--font-serif); letter-spacing: 0; }
   :focus-visible { outline: 2px solid var(--color-primary); outline-offset: 2px; }
 }
 
@@ -103,6 +104,7 @@
 }
 
 @utility bg-hero-overlay { background-image: var(--gradient-hero); }
+@utility bg-editorial-overlay { background-image: var(--gradient-editorial); }
 @utility shadow-gold { box-shadow: var(--shadow-gold); }
 
 @utility gold-rule {
@@ -131,3 +133,8 @@
 
 @keyframes fade-up { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
 @utility animate-fade-up { animation: fade-up 0.8s cubic-bezier(.2,.7,.2,1) both; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation: none !important; transition-duration: 0s !important; }
+}

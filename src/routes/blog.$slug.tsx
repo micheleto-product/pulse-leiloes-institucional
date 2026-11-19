@@ -7,6 +7,7 @@ import { SchemaMarkup } from "@/components/site/SchemaMarkup";
 import { ArticleCard } from "@/components/site/ArticleCard";
 import { getArticle, sortedArticles, type Block } from "@/data/articles";
 import { SITE, formatDate } from "@/lib/site";
+import { articleMedia } from "@/lib/article-media";
 
 const slugify = (s: string) => s.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
 
@@ -26,6 +27,7 @@ export const Route = createFileRoute("/blog/$slug")({
         { property: "og:title", content: a.title },
         { property: "og:description", content: a.metaDescription },
         { property: "og:type", content: "article" },
+        { name: "twitter:card", content: "summary_large_image" },
         { property: "og:url", content: `/blog/${params.slug}` },
         { property: "article:published_time", content: a.publishDate },
         { property: "article:section", content: a.category },
@@ -73,6 +75,7 @@ function ArticlePage() {
   const midIndex = a.content.findIndex((b, i) => i >= mid && b.type === "h2");
   const related = sortedArticles().filter((x) => x.slug !== a.slug).slice(0, 3);
   const campaign = a.utmCampaign;
+  const cover = articleMedia(a);
 
   return (
     <>
@@ -100,7 +103,7 @@ function ArticlePage() {
         ]}
       />
       <article>
-        <header className="border-b border-border py-14">
+        <header className="border-b border-border py-10 md:py-14">
           <div className="container-site max-w-4xl">
             <Breadcrumbs items={[{ label: "Blog Jurídico", to: "/blog" }, { label: a.title }]} />
             <p className="eyebrow mt-10">{a.category}</p>
@@ -113,6 +116,7 @@ function ArticlePage() {
               <span aria-hidden>·</span>
               <span className="inline-flex items-center gap-1"><Clock className="h-4 w-4" aria-hidden />{a.readTime} min</span>
             </p>
+            <img src={cover.src} alt={cover.alt} width={1024} height={768} fetchPriority="high" className="mt-8 aspect-[21/9] w-full rounded-sm object-cover" />
           </div>
         </header>
 
@@ -191,7 +195,7 @@ function ArticlePage() {
       <section className="py-20" aria-labelledby="relacionados">
         <div className="container-site">
           <h2 id="relacionados" className="text-3xl text-foreground">Continue aprendendo</h2>
-          <div className="mt-10 grid gap-6 md:grid-cols-3 [&_article]:border-border [&_h3]:text-foreground [&_p]:text-muted-foreground">
+          <div className="mt-10 grid gap-6 md:grid-cols-3">
             {related.map((r) => <ArticleCard key={r.slug} article={r} />)}
           </div>
         </div>

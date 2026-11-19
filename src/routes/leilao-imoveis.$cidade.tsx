@@ -25,6 +25,7 @@ export const Route = createFileRoute("/leilao-imoveis/$cidade")({
         { property: "og:title", content: title },
         { property: "og:description", content: desc },
         { property: "og:type", content: "website" },
+        { name: "twitter:card", content: "summary_large_image" },
         { property: "og:url", content: `/leilao-imoveis/${params.cidade}` },
       ],
       links: [{ rel: "canonical", href: `/leilao-imoveis/${params.cidade}` }],

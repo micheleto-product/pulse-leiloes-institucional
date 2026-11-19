@@ -33,4 +33,5 @@ use the editor.
 - Blog articles live in src/data/articles.ts and city SEO pages in src/data/cities.ts; routes and sitemap.xml read from them, so new content needs no route changes.
 - Every link to the official auction platform goes through CtaLink/ctaUrl (src/lib/site.ts) so UTMs and data-gtm-event="clique_site_oficial" stay consistent.
 - Head tags use TanStack route head(); JSON-LD via SchemaMarkup component (react-helmet-async is not supported on this stack).
+- Article imagery is mapped by category in src/lib/article-media.ts and reused in cards and article covers, keeping editorial content independent of presentation.
 <!-- AGENT-MEMORY:END -->

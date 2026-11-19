@@ -1,15 +1,8 @@
 import { cn } from "@/lib/utils";
+import logo from "@/assets/pulse-logo.png.asset.json";
 
 export function Logo({ className }: { className?: string }) {
   return (
-    <span className={cn("inline-flex items-center gap-3", className)} aria-label="Pulse Leilões">
-      <span className="grid h-10 w-10 place-items-center border-2 border-primary font-serif text-lg font-bold leading-none text-primary">
-        PL
-      </span>
-      <span className="flex flex-col leading-none">
-        <span className="font-serif text-2xl font-bold tracking-wide text-foreground">PULSE</span>
-        <span className="mt-1 text-[0.6rem] font-semibold tracking-[0.55em] text-primary">LEILÕES</span>
-      </span>
-    </span>
+    <img src={logo.url} alt="Pulse Leilões" width={247} height={66} className={cn("h-auto w-44 shrink-0", className)} />
   );
 }

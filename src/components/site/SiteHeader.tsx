@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import { Logo } from "./Logo";
 import { CtaLink } from "./CtaLink";
+import { Button } from "@/components/ui/button";
 
 const nav = [
   { to: "/", label: "Início" },
@@ -31,9 +32,9 @@ export function SiteHeader() {
         <div className="hidden lg:block">
           <CtaLink campaign="header">Leilões abertos</CtaLink>
         </div>
-        <button className="lg:hidden text-foreground" aria-label={open ? "Fechar menu" : "Abrir menu"} aria-expanded={open} onClick={() => setOpen(!open)}>
+        <Button variant="ghost" size="icon" className="lg:hidden text-foreground" aria-label={open ? "Fechar menu" : "Abrir menu"} aria-expanded={open} onClick={() => setOpen(!open)}>
           {open ? <X /> : <Menu />}
-        </button>
+        </Button>
       </div>
       {open && (
         <nav aria-label="Navegação móvel" className="border-t border-border bg-charcoal lg:hidden">
