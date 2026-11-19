@@ -28,3 +28,9 @@ use the editor.
   own key and store it in Secrets.
 - **Secrets.** Lovable manages them. Do not put secret values in the repo.
 <!-- LOVABLE:END -->
+
+<!-- AGENT-MEMORY:BEGIN -->
+- Blog articles live in src/data/articles.ts and city SEO pages in src/data/cities.ts; routes and sitemap.xml read from them, so new content needs no route changes.
+- Every link to the official auction platform goes through CtaLink/ctaUrl (src/lib/site.ts) so UTMs and data-gtm-event="clique_site_oficial" stay consistent.
+- Head tags use TanStack route head(); JSON-LD via SchemaMarkup component (react-helmet-async is not supported on this stack).
+<!-- AGENT-MEMORY:END -->
